@@ -22,6 +22,20 @@ namespace CodeNetEmployeeProjectTask.Controllers
 
         }
 
+        [HttpGet]
+        public async Task<ActionResult<ApiResponse<IEnumerable<Project>>>> GetProjects()
+        {
+            var projects = await _projectService.GetAllProjectsAsync();
+            var response = new ApiResponse<IEnumerable<Project>>
+            {
+                Data = projects,
+                Status = "Success",
+                Error = null
+            };
+            return Ok(response);
+        }
+
+
         [HttpPost]
         public async Task<ActionResult<ApiResponse<Project>>> PostProject(ProjectCreateDto projectDto)
         {

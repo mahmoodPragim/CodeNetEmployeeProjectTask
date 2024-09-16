@@ -15,8 +15,6 @@ public class EmployeeRepository : IEmployeeRepository
     public async Task<IEnumerable<Employee>> GetAllEmployeesAsync()
     {
         return await _context.Employees
-            .Include(e => e.EmployeeProjects)
-            .ThenInclude(ep => ep.Project)
             .ToListAsync();
     }
 
